@@ -20,6 +20,21 @@ if (menuButton && nav) {
 const year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
 
+const engagementToggle = document.getElementById('engagement-toggle');
+const engagementsSection = document.getElementById('past-engagements');
+
+if (engagementToggle && engagementsSection) {
+  engagementToggle.addEventListener('click', () => {
+    const isOpening = engagementsSection.hidden;
+    engagementsSection.hidden = !isOpening;
+    engagementToggle.setAttribute('aria-expanded', String(isOpening));
+    engagementToggle.firstChild.textContent = isOpening ? 'Hide Past & Ongoing Engagements ' : 'Past & Ongoing Engagements ';
+    engagementToggle.querySelector('span').textContent = isOpening ? '↑' : '↓';
+
+    if (isOpening) engagementsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+}
+
 const copyButton = document.getElementById('copy-bio');
 const speakerBio = document.getElementById('speaker-bio-text');
 const copyStatus = document.querySelector('.copy-status');
